@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oil Market Training Program — Majlis Energy Advisory</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-0: #080E18;
+  --bg-1: #0C1420;
+  --bg-2: #111B2C;
+  --bg-3: #162236;
+  --bg-card: #141E30;
+  --bg-card-hover: #192740;
+  --gold: #C5A255;
+  --gold-lt: #D4BA7A;
+  --gold-pale: #E8D9A8;
+  --gold-dim: rgba(197,162,85,0.10);
+  --gold-border: rgba(197,162,85,0.18);
+  --white: #FFFFFF;
+  --text-1: #E8ECF0;
+  --text-2: #9AABBC;
+  --text-3: #5E7088;
+  --border: rgba(255,255,255,0.05);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Open Sans',sans-serif;
+  background:var(--bg-0);
+  color:var(--text-1);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Nav ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(8,14,24,0.88);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:52px;
+  transition:border-color 0.3s;
+}
+.nav.scrolled{border-bottom-color:var(--gold);}
+.nav-brand{font-family:'Montserrat';font-weight:600;font-size:11px;letter-spacing:2.5px;color:var(--white);text-transform:uppercase;}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{font-size:10px;font-weight:600;color:var(--text-3);text-decoration:none;letter-spacing:0.8px;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-conf{font-size:9px;color:var(--text-3);letter-spacing:1px;text-transform:uppercase;}
+
+/* ── Hero ── */
+.hero{
+  background:var(--bg-0);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:80px 48px;position:relative;overflow:hidden;text-align:center;
+}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);}
+.hero::after{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(197,162,85,0.03) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-content{position:relative;z-index:1;max-width:600px;}
+.hero-logo{width:160px;margin:0 auto 48px;display:block;opacity:0;transform:translateY(16px);animation:fu .7s ease forwards .2s;}
+.hero h1{font-family:'Montserrat';font-weight:700;font-size:44px;line-height:1.12;color:var(--white);margin-bottom:12px;opacity:0;transform:translateY(16px);animation:fu .7s ease forwards .4s;}
+.hero-sub{font-family:'Montserrat';font-weight:300;font-size:18px;color:var(--gold);margin-bottom:48px;opacity:0;transform:translateY(16px);animation:fu .7s ease forwards .55s;}
+.hero-line{width:60px;height:1px;background:var(--gold);margin:0 auto 36px;opacity:0;animation:fu .7s ease forwards .65s;}
+.hero-meta{opacity:0;animation:fu .7s ease forwards .75s;}
+.hero-meta .label{font-size:11px;color:var(--gold-pale);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
+.hero-meta .ministry{font-family:'Montserrat';font-weight:600;font-size:18px;color:var(--white);margin-bottom:3px;}
+.hero-meta .country{font-size:13px;color:var(--text-3);margin-bottom:20px;}
+.hero-meta .date{font-size:12px;color:var(--gold-lt);letter-spacing:0.5px;}
+@keyframes fu{to{opacity:1;transform:translateY(0);}}
+
+/* ── Sections ── */
+.sec{padding:80px 48px;max-width:1080px;margin:0 auto;}
+.sec-full{max-width:none;padding:80px 48px;}
+.sec-full .inner{max-width:1080px;margin:0 auto;}
+.bg-1{background:var(--bg-1);}
+.bg-2{background:var(--bg-2);}
+
+.sec-title{font-family:'Montserrat';font-weight:700;font-size:28px;color:var(--white);margin-bottom:6px;}
+.sec-rule{width:100%;height:1px;background:linear-gradient(90deg,var(--gold),transparent 50%);margin-bottom:28px;}
+.sec-intro{font-size:14px;color:var(--text-2);max-width:780px;line-height:1.75;margin-bottom:36px;}
+.sub{font-family:'Montserrat';font-weight:600;font-size:16px;color:var(--gold-lt);margin-bottom:14px;margin-top:6px;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold-border),transparent);max-width:1080px;margin:0 auto;}
+
+/* ── Stat Cards ── */
+.stats{display:grid;gap:10px;margin-bottom:24px;}
+.stats-4{grid-template-columns:repeat(4,1fr);}
+.stats-5{grid-template-columns:repeat(5,1fr);}
+.sc{
+  background:var(--bg-card);border:1px solid var(--gold-border);
+  border-radius:6px;padding:16px 12px;text-align:center;
+  position:relative;overflow:hidden;transition:border-color .3s,transform .2s;
+}
+.sc:hover{border-color:var(--gold);transform:translateY(-1px);}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);}
+.sc .v{font-family:'Montserrat';font-weight:700;font-size:24px;color:var(--gold);}
+.sc .l{font-size:9px;color:var(--text-2);letter-spacing:.5px;margin-top:3px;text-transform:uppercase;}
+
+/* ── Info Boxes ── */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px;}
+.info-box{background:var(--bg-card);border:1px solid var(--gold-border);border-radius:8px;padding:22px;}
+.info-box h3{font-family:'Montserrat';font-weight:600;font-size:14px;color:var(--gold);margin-bottom:12px;}
+.info-box ul{list-style:none;}
+.info-box li{font-size:12px;color:var(--text-2);padding:3px 0;line-height:1.5;}
+.info-box li::before{content:'';display:inline-block;width:4px;height:4px;background:var(--gold);border-radius:50%;margin-right:10px;vertical-align:middle;}
+
+/* ── Purpose Cards ── */
+.purpose-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.pc{
+  background:var(--bg-card);border:1px solid var(--gold-border);
+  border-left:3px solid var(--gold);border-radius:6px;
+  padding:18px 18px 16px 20px;transition:border-color .3s,transform .2s;
+}
+.pc:hover{border-color:var(--gold);transform:translateY(-1px);}
+.pc .kw{font-family:'Montserrat';font-weight:700;font-size:14px;color:var(--white);margin-bottom:4px;}
+.pc p{font-size:12px;color:var(--text-2);line-height:1.5;}
+
+/* ── Module Cards ── */
+.mods{display:flex;flex-direction:column;gap:6px;}
+.mc{background:var(--bg-card);border:1px solid var(--gold-border);border-radius:8px;overflow:hidden;transition:border-color .3s;}
+.mc:hover{border-color:rgba(197,162,85,0.35);}
+.mc.open{border-color:var(--gold);}
+.mh{display:flex;align-items:center;padding:12px 16px;cursor:pointer;user-select:none;gap:12px;}
+.mh .code{
+  font-family:'Montserrat';font-weight:700;font-size:12px;color:var(--gold);
+  background:var(--bg-0);border:1px solid var(--gold-border);
+  padding:4px 9px;border-radius:4px;min-width:38px;text-align:center;
+}
+.mh .title{font-family:'Montserrat';font-weight:600;font-size:12px;color:var(--text-1);flex:1;}
+.mh .meta{display:flex;gap:14px;align-items:center;}
+.mh .badge{
+  background:var(--gold-dim);color:var(--gold-lt);
+  padding:2px 8px;border-radius:10px;font-weight:600;font-size:10px;
+  border:1px solid rgba(197,162,85,0.15);
+}
+.mh .prices{display:flex;gap:12px;font-family:'Montserrat';font-size:11px;font-weight:600;color:var(--text-1);}
+.mh .prices span{white-space:nowrap;}
+.mh .prices .pl{font-size:8px;font-weight:500;color:var(--text-3);display:block;letter-spacing:.3px;text-transform:uppercase;}
+.mh .tog{width:20px;height:20px;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:transform .3s;font-size:14px;}
+.mc.open .tog{transform:rotate(180deg);}
+.mb{max-height:0;overflow:hidden;transition:max-height .4s ease;border-top:1px solid var(--border);}
+.mc.open .mb{max-height:800px;}
+.mb-inner{padding:16px 16px 16px 62px;}
+.mb-inner p{font-size:12px;color:var(--text-2);line-height:1.6;margin-bottom:10px;}
+.mb-inner .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.mb-inner .detail-item h5{font-family:'Montserrat';font-weight:600;font-size:11px;color:var(--gold-lt);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px;}
+.mb-inner .detail-item p{font-size:11px;color:var(--text-2);margin-bottom:0;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{
+  font-size:10px;color:var(--gold-lt);background:var(--gold-dim);
+  padding:3px 9px;border-radius:10px;border:1px solid rgba(197,162,85,0.15);
+}
+
+.mod-total{
+  background:var(--bg-0);border:1px solid var(--gold);border-radius:8px;
+  padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-top:8px;
+}
+.mod-total .label{font-family:'Montserrat';font-weight:700;font-size:12px;color:var(--gold-lt);}
+.mod-total .vals{display:flex;gap:16px;}
+.mod-total .val{font-family:'Montserrat';font-weight:700;font-size:13px;color:var(--gold);}
+.mod-total .val .pl{font-size:8px;font-weight:500;color:var(--gold-lt);display:block;letter-spacing:.3px;text-transform:uppercase;opacity:.8;}
+
+/* ── Timeline ── */
+.tl{display:flex;flex-direction:column;position:relative;padding-left:36px;margin-top:20px;}
+.tl::before{content:'';position:absolute;left:11px;top:12px;bottom:12px;width:1px;background:linear-gradient(to bottom,var(--gold),var(--gold-dim));}
+.tl-i{display:flex;gap:14px;padding:10px 0;position:relative;}
+.tl-d{
+  position:absolute;left:-36px;width:22px;height:22px;
+  background:var(--bg-0);border:2px solid var(--gold);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Montserrat';font-weight:700;font-size:9px;color:var(--gold);z-index:1;
+}
+.tl-p{font-family:'Montserrat';font-weight:600;font-size:12px;color:var(--gold-lt);min-width:140px;}
+.tl-t{font-size:12px;color:var(--text-2);}
+
+/* ── RT Cards ── */
+.rt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.rt-card{
+  background:var(--bg-card);border:1px solid var(--gold-border);border-radius:8px;
+  padding:20px;border-top:2px solid var(--gold);transition:transform .2s,border-color .3s;
+}
+.rt-card:hover{transform:translateY(-2px);border-color:var(--gold);}
+.rt-num{font-family:'Montserrat';font-weight:700;font-size:9px;color:var(--gold);letter-spacing:2px;margin-bottom:6px;}
+.rt-event{font-family:'Montserrat';font-weight:600;font-size:15px;color:var(--white);margin-bottom:3px;}
+.rt-loc{font-size:12px;color:var(--text-3);margin-bottom:12px;}
+.rt-dets{display:flex;gap:18px;}
+.rt-det{font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.3px;}
+.rt-det strong{font-family:'Montserrat';font-weight:700;font-size:16px;display:block;color:var(--gold);text-transform:none;}
+.rt-total{
+  background:var(--bg-0);border:1px solid var(--gold);border-radius:8px;
+  padding:12px 20px;display:flex;align-items:center;justify-content:space-between;
+}
+.rt-total .label{font-family:'Montserrat';font-weight:600;font-size:12px;color:var(--gold-lt);}
+.rt-total .val{font-family:'Montserrat';font-weight:700;font-size:18px;color:var(--gold);}
+.rt-note{font-size:11px;color:var(--text-3);font-style:italic;margin-top:12px;line-height:1.5;}
+
+/* ── Outcomes ── */
+.oc-cat{font-family:'Montserrat';font-weight:700;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-top:20px;margin-bottom:6px;}
+.oc-line{height:1px;background:linear-gradient(90deg,var(--gold-dim),transparent);margin-bottom:10px;}
+.oc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.oc-card{background:var(--bg-card);border:1px solid var(--gold-border);border-radius:6px;padding:14px 16px;transition:border-color .3s;}
+.oc-card:hover{border-color:rgba(197,162,85,.3);}
+.oc-card h4{font-family:'Montserrat';font-weight:600;font-size:12px;color:var(--white);margin-bottom:3px;}
+.oc-card p{font-size:11px;color:var(--text-3);line-height:1.5;}
+
+/* ── Investment ── */
+.sc-tog{display:inline-flex;background:var(--bg-card);border:1px solid var(--gold-border);border-radius:8px;padding:3px;margin-bottom:24px;}
+.sc-btn{
+  font-family:'Montserrat';font-weight:600;font-size:11px;
+  padding:9px 20px;border:none;border-radius:6px;cursor:pointer;
+  transition:all .35s cubic-bezier(.22,1,.36,1);background:transparent;color:var(--text-3);
+}
+.sc-btn:not(.active):hover{color:var(--gold-lt);background:rgba(197,162,85,.06);}
+.sc-btn.active{background:var(--gold);color:var(--bg-0);box-shadow:0 2px 12px rgba(197,162,85,.25);transform:scale(1.02);}
+.sc-btn:active{transform:scale(.97);}
+.inv-tbl{width:100%;border-collapse:separate;border-spacing:0;margin-bottom:18px;border-radius:8px;overflow:hidden;}
+.inv-tbl thead th{
+  background:var(--bg-3);font-family:'Montserrat';font-weight:600;font-size:10px;
+  color:var(--gold-lt);padding:11px 16px;text-align:left;letter-spacing:.8px;text-transform:uppercase;
+  border-bottom:1px solid var(--gold);transition:all .3s;
+}
+.inv-tbl thead th:hover{color:var(--gold);background:rgba(197,162,85,.08);}
+.inv-tbl thead th:last-child{text-align:right;}
+.inv-tbl tbody td{padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);color:var(--text-2);transition:all .3s ease;}
+.inv-tbl tbody td:last-child{text-align:right;font-family:'Montserrat';font-weight:600;color:var(--text-1);}
+.inv-tbl tbody tr:nth-child(odd){background:var(--bg-card);}
+.inv-tbl tbody tr:nth-child(even){background:var(--bg-2);}
+.inv-tbl tbody tr{transition:all .35s cubic-bezier(.22,1,.36,1);position:relative;}
+.inv-tbl tbody tr:not(.rg):hover{background:rgba(197,162,85,.06);}
+.inv-tbl tbody tr:not(.rg):hover td{transform:translateX(4px);color:var(--text-1);}
+.inv-tbl tbody tr:not(.rg):hover td:last-child{color:var(--gold);text-shadow:0 0 12px rgba(197,162,85,.3);}
+.inv-tbl tbody tr.rb td{font-weight:600;color:var(--text-1);}
+.inv-tbl tbody tr.rb td:last-child{color:var(--white);}
+.inv-tbl tbody tr.rg td{
+  background:var(--bg-0);border-top:2px solid var(--gold);border-bottom:none;
+  font-family:'Montserrat';font-weight:700;font-size:14px;padding:13px 16px;
+}
+.inv-tbl tbody tr.rg{transition:all .35s cubic-bezier(.22,1,.36,1);}
+.inv-tbl tbody tr.rg:hover td{background:rgba(197,162,85,.08);}
+.inv-tbl tbody tr.rg:hover td:last-child{text-shadow:0 0 20px rgba(197,162,85,.5);transform:scale(1.03);display:table-cell;}
+.inv-tbl tbody tr.rg td:first-child{color:var(--white);}
+.inv-tbl tbody tr.rg td:last-child{color:var(--gold);}
+.inv-fn{font-size:11px;color:var(--text-3);line-height:1.6;margin-top:16px;padding-left:12px;border-left:2px solid var(--gold);}
+.inv-fn strong{color:var(--gold);}
+
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+.comp-card{border:1px solid var(--gold-border);border-radius:10px;overflow:hidden;transition:all .4s cubic-bezier(.22,1,.36,1);transform-style:preserve-3d;perspective:800px;}
+.comp-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3),0 0 20px rgba(197,162,85,.08);}
+.comp-card .hd{background:var(--bg-3);padding:12px 18px;text-align:center;border-bottom:1px solid var(--gold-border);transition:background .3s;}
+.comp-card:hover .hd{background:rgba(197,162,85,.08);}
+.comp-card .hd h3{font-family:'Montserrat';font-weight:600;font-size:12px;color:var(--gold-lt);transition:color .3s;}
+.comp-card:hover .hd h3{color:var(--gold);}
+.comp-card .bd{padding:14px 18px;}
+.comp-card .ln{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--text-2);transition:all .3s ease;transform:translateX(0);}
+.comp-card .ln:last-child{border-bottom:none;}
+.comp-card:hover .ln{transform:translateX(3px);}
+.comp-card .ln .v{font-family:'Montserrat';font-weight:600;color:var(--text-1);transition:all .3s;}
+.comp-card:hover .ln .v{color:var(--gold-lt);}
+.comp-card .tl{background:var(--bg-0);padding:12px 18px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--gold);transition:all .3s;}
+.comp-card:hover .tl{background:rgba(197,162,85,.06);}
+.comp-card .tl .lb{font-family:'Montserrat';font-weight:600;font-size:11px;color:var(--white);}
+.comp-card .tl .vl{font-family:'Montserrat';font-weight:700;font-size:18px;color:var(--gold);transition:all .4s cubic-bezier(.22,1,.36,1);}
+.comp-card:hover .tl .vl{transform:scale(1.06);text-shadow:0 0 24px rgba(197,162,85,.4);}
+
+/* ── Steps ── */
+.steps{display:flex;flex-direction:column;position:relative;padding-left:36px;}
+.steps::before{content:'';position:absolute;left:11px;top:12px;bottom:12px;width:1px;background:linear-gradient(to bottom,var(--gold),var(--gold-dim));}
+.st-i{display:flex;gap:14px;padding:12px 0;position:relative;}
+.st-n{
+  position:absolute;left:-36px;width:22px;height:22px;
+  background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Montserrat';font-weight:700;font-size:10px;color:var(--bg-0);z-index:1;
+}
+.st-c h4{font-family:'Montserrat';font-weight:600;font-size:13px;color:var(--white);margin-bottom:2px;}
+.st-c .tm{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:3px;}
+.st-c p{font-size:12px;color:var(--text-2);}
+
+/* ── Footer ── */
+.footer{background:var(--bg-0);padding:56px 48px 36px;text-align:center;border-top:2px solid var(--gold);}
+.footer-name{font-family:'Montserrat';font-weight:700;font-size:18px;color:var(--white);margin-bottom:3px;}
+.footer-role{font-size:12px;color:var(--gold-lt);margin-bottom:2px;}
+.footer-co{font-size:12px;color:var(--text-3);margin-bottom:28px;}
+.footer-div{width:60px;height:1px;background:var(--bg-3);margin:0 auto 20px;}
+.footer-det{font-size:11px;color:var(--text-3);line-height:1.8;}
+.footer-tag{font-size:11px;color:var(--gold-lt);font-style:italic;margin-top:20px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6;}
+.footer-cp{font-size:9px;color:var(--text-3);margin-top:28px;opacity:.4;}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .nav{padding:0 20px;}.nav-links{display:none;}
+  .hero{padding:80px 20px;}
+  .hero h1{font-size:30px;}
+  .sec,.sec-full{padding:50px 20px;}
+  .stats-4,.stats-5{grid-template-columns:repeat(2,1fr);}
+  .info-grid,.purpose-grid,.rt-grid,.oc-grid,.comp-grid{grid-template-columns:1fr;}
+  .mh .prices{display:none;}
+}
+
+/* ── Reveal ── */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+.rv.vis{opacity:1;transform:translateY(0);}
+
+/* ── Print / PDF ── */
+@media print {
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  body{overflow:visible !important;}
+  .nav{display:none !important;}
+  .divider{display:none !important;}
+  .rv{opacity:1 !important;transform:none !important;}
+
+  /* ── Internal padding (no PDF margins — backgrounds bleed to edge) ── */
+  .sec{padding:48px 56px !important;max-width:none !important;}
+  .sec-full{padding:48px 56px !important;}
+  .sec-full .inner{max-width:none !important;margin:0 !important;}
+
+  /* Hero cover page */
+  .hero{
+    min-height:auto;page-break-after:always;break-after:page;
+    padding:200px 56px 140px;
+  }
+
+  /* ── Force multi-column grids (override responsive breakpoint) ── */
+  .info-grid{grid-template-columns:1fr 1fr !important;}
+  .purpose-grid{grid-template-columns:1fr 1fr !important;}
+  .stats-5{grid-template-columns:repeat(5,1fr) !important;}
+  .stats-4{grid-template-columns:repeat(4,1fr) !important;}
+  .rt-grid{grid-template-columns:1fr 1fr !important;}
+  .oc-grid{grid-template-columns:1fr 1fr !important;}
+  .oc-grid[style*="1fr;"]{grid-template-columns:1fr !important;}
+  .comp-grid{grid-template-columns:1fr 1fr !important;}
+  .detail-grid{grid-template-columns:1fr 1fr !important;}
+
+  /* ── Prevent breaks inside key blocks ── */
+  .mc, .mod-total, .rt-card, .sc, .pc, .info-box,
+  .oc-card, .why-card, .comp-card,
+  .st-i, .tl-i, .stat-card, .rt-total, .inv-fn {
+    break-inside:avoid !important;
+    page-break-inside:avoid !important;
+  }
+
+  /* Keep headings with their content */
+  .sec-title, .sub, h2, h3, h4, h5,
+  .sec-rule, .sec-intro,
+  .oc-cat, .oc-line {
+    break-after:avoid !important;
+    page-break-after:avoid !important;
+  }
+
+  /* ── Section page breaks ── */
+  #analyst, #roundtable, #outcomes, #investment, #next-steps {
+    break-before:page !important;
+    page-break-before:always !important;
+  }
+
+  /* Module cards — keep header+body together */
+  .mc.open .mb{max-height:none !important;overflow:visible !important;}
+  .mc{break-inside:avoid !important;page-break-inside:avoid !important;margin-bottom:10px;}
+
+  /* Investment tables — keep whole table together */
+  .inv-tbl{break-inside:avoid !important;page-break-inside:avoid !important;}
+  .inv-tbl tr{break-inside:avoid !important;page-break-inside:avoid !important;}
+
+  /* Comparison cards — keep together */
+  .comp-grid{break-inside:avoid !important;page-break-inside:avoid !important;}
+
+  /* Roundtable grid — keep together */
+  .rt-grid{break-inside:avoid !important;page-break-inside:avoid !important;}
+
+  /* Stats row — keep together */
+  .stats{break-inside:avoid !important;page-break-inside:avoid !important;}
+
+  /* Purpose grid — keep together */
+  .purpose-grid{break-inside:avoid !important;page-break-inside:avoid !important;}
+
+  /* Strategy box — keep together */
+  .info-grid{break-inside:avoid !important;page-break-inside:avoid !important;}
+
+  /* Steps timeline — keep together */
+  .steps{break-inside:avoid !important;page-break-inside:avoid !important;}
+
+  /* Delivery timeline */
+  .tl{break-inside:avoid !important;page-break-inside:avoid !important;}
+
+  /* Footer on its own page */
+  .footer{break-before:page !important;page-break-before:always !important;padding:140px 56px 60px !important;}
+
+  /* Outcomes grid — keep pairs together */
+  .oc-grid{break-inside:avoid !important;page-break-inside:avoid !important;margin-bottom:6px;}
+
+  /* Scenario toggle — keep with table */
+  .sc-tog{break-after:avoid !important;page-break-after:avoid !important;}
+
+  /* ── Tighten spacing for print ── */
+  .sec-intro{margin-bottom:24px !important;}
+  .mc .mb-inner{padding:14px 14px 14px 54px !important;}
+  .st-i{padding:8px 0 !important;}
+  .tl-i{padding:6px 0 !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="gate" style="
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;
+  background:var(--bg-0);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;text-align:center;
+">
+  <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);"></div>
+  <div style="max-width:400px;padding:0 24px;">
+    <img src="Build Scripts & Assets/MAJLIS_RGB_Energy_EN_White.png" alt="Majlis Energy" style="width:160px;margin-bottom:40px;" onerror="this.style.display='none'">
+    <h2 style="font-family:'Montserrat';font-weight:700;font-size:22px;color:var(--white);margin-bottom:6px;">Oil Market Training Program</h2>
+    <p style="font-family:'Montserrat';font-weight:300;font-size:14px;color:var(--gold);margin-bottom:32px;">Full Proposal</p>
+    <div style="width:50px;height:1px;background:var(--gold);margin:0 auto 32px;"></div>
+    <p style="font-size:12px;color:var(--text-3);margin-bottom:20px;letter-spacing:0.5px;">This document is private and confidential.<br>Please enter the access code to continue.</p>
+    <div style="position:relative;margin-bottom:12px;">
+      <input id="gate-pw" type="password" placeholder="Access Code" autocomplete="off" style="
+        width:100%;padding:12px 16px;
+        background:var(--bg-card);border:1px solid var(--gold-border);border-radius:8px;
+        color:var(--text-1);font-family:'Open Sans';font-size:14px;
+        outline:none;transition:border-color 0.3s;
+      " onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--gold-border)'"
+      onkeydown="if(event.key==='Enter')unlock()">
+    </div>
+    <button onclick="unlock()" style="
+      width:100%;padding:11px 16px;
+      background:var(--gold);border:none;border-radius:8px;
+      color:var(--bg-0);font-family:'Montserrat';font-weight:600;font-size:13px;
+      cursor:pointer;transition:opacity 0.2s;letter-spacing:0.5px;
+    " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Enter</button>
+    <p id="gate-err" style="font-size:11px;color:#C45;margin-top:10px;opacity:0;transition:opacity 0.3s;">Incorrect access code. Please try again.</p>
+    <p style="font-size:9px;color:var(--text-3);margin-top:32px;opacity:0.5;">&copy; 2026 Majlis Energy Advisory (Majlis Altaqa) LLC</p>
+  </div>
+</div>
+
+<nav class="nav" id="nav" style="display:none;">
+  <div class="nav-brand">Majlis Energy Advisory</div>
+  <div class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#analyst">Analyst Program</a>
+    <a href="#roundtable">Roundtable</a>
+    <a href="#outcomes">Outcomes</a>
+    <a href="#investment">Investment</a>
+    <a href="#next-steps">Next Steps</a>
+  </div>
+  <div class="nav-conf">Private &amp; Confidential</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <img src="Build Scripts & Assets/MAJLIS_RGB_Energy_EN_White.png" alt="Majlis Energy" class="hero-logo" onerror="this.style.display='none'">
+    <h1>Oil Market<br>Training Program</h1>
+    <div class="hero-sub">Full Proposal</div>
+    <div class="hero-line"></div>
+    <div class="hero-meta">
+      <div class="label">Prepared for</div>
+      <div class="ministry">The Ministry of Energy</div>
+      <div class="country">Kingdom of Saudi Arabia</div>
+      <div class="date">March 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- Overview -->
+<div class="divider"></div>
+<section class="sec" id="overview">
+  <div class="rv">
+    <h2 class="sec-title">Program Overview</h2>
+    <div class="sec-rule"></div>
+    <p class="sec-intro">Majlis Energy Advisory proposes a uniquely curated Oil Market Training Program designed for the Ministry of Energy, Kingdom of Saudi Arabia. The program strengthens the Ministry's analytical capabilities in oil market forecasting, price analysis, and strategic market intelligence. It comprises two distinct components:</p>
+  </div>
+  <div class="rv">
+    <div class="info-grid">
+      <div class="info-box">
+        <h3>I. Analyst Training Program</h3>
+        <p style="font-size:12px;color:var(--text-2);margin-bottom:10px;line-height:1.5;">A structured, classroom-based training curriculum for Ministry analysts — covering oil market fundamentals, trading, and derivatives across 7 expert-led modules.</p>
+        <ul>
+          <li>7 modules delivered over 15 training days</li>
+          <li>90 hours of expert-led instruction</li>
+          <li>20 analysts per cohort</li>
+          <li>3 sessions per day (120 minutes each)</li>
+          <li>14 industry expert speaker engagements</li>
+          <li>Certification upon successful completion</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h3>II. Executive Roundtable Program</h3>
+        <p style="font-size:12px;color:var(--text-2);margin-bottom:10px;line-height:1.5;">Private, invitation-only dinner discussions for senior Ministry executives, held alongside the world's leading energy conferences with top industry experts.</p>
+        <ul>
+          <li>4 private roundtable dinner discussions</li>
+          <li>Held alongside major global energy events</li>
+          <li>CERAWeek (Houston) &middot; Energy Forum (London)</li>
+          <li>Energy Week (London) &middot; IEF (Riyadh)</li>
+          <li>15 senior participants per event</li>
+          <li>8 expert speakers across 4 events</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="rv">
+    <div class="sub">Analyst Training at a Glance</div>
+    <div class="stats stats-5">
+      <div class="sc"><div class="v">15</div><div class="l">Training Days</div></div>
+      <div class="sc"><div class="v">45</div><div class="l">Sessions</div></div>
+      <div class="sc"><div class="v">7</div><div class="l">Modules</div></div>
+      <div class="sc"><div class="v">14</div><div class="l">Expert Speakers</div></div>
+      <div class="sc"><div class="v">90</div><div class="l">Hours</div></div>
+    </div>
+  </div>
+  <div class="rv">
+    <div class="sub">Executive Roundtable at a Glance</div>
+    <div class="stats stats-4">
+      <div class="sc"><div class="v">4</div><div class="l">Roundtable Events</div></div>
+      <div class="sc"><div class="v">8</div><div class="l">Expert Speakers</div></div>
+      <div class="sc"><div class="v">15</div><div class="l">Executives / Event</div></div>
+      <div class="sc"><div class="v">4</div><div class="l">Global Conferences</div></div>
+    </div>
+  </div>
+
+  <div class="rv">
+    <div class="sub">Program Purpose</div>
+    <div class="purpose-grid">
+      <div class="pc"><div class="kw">Strengthen</div><p>Analyst capabilities in forecasting oil balances and the price of oil</p></div>
+      <div class="pc"><div class="kw">Develop</div><p>Deep insights into the boom and bust cycles of physical and financial oil markets</p></div>
+      <div class="pc"><div class="kw">Enhance</div><p>Practical skills to build data-driven supply-demand reports for OPEC policy</p></div>
+      <div class="pc"><div class="kw">Build</div><p>Institutional know-how in short and long-term oil market analytics</p></div>
+    </div>
+  </div>
+
+  <div class="rv" style="margin-top:28px;">
+    <div class="sub">Strategy</div>
+    <div style="background:var(--bg-card);border:1px solid var(--gold-border);border-radius:8px;padding:22px;">
+      <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:14px;">Majlis Energy will provide structured interactive lectures, workshops and expert-driven analytical training to strengthen the Ministry of Energy's oil market and price forecasting capabilities.</p>
+      <ul style="list-style:none;padding:0;margin:0;">
+        <li style="font-size:12px;color:var(--text-2);padding:5px 0;line-height:1.6;"><span style="color:var(--gold);margin-right:8px;">&#8226;</span><span style="color:var(--gold);font-weight:700;">Analyze</span> the complexities of the oil market (supply, demand, inventories, policy decisions and financial markets)</li>
+        <li style="font-size:12px;color:var(--text-2);padding:5px 0;line-height:1.6;"><span style="color:var(--gold);margin-right:8px;">&#8226;</span><span style="color:var(--gold);font-weight:700;">Understand</span> how paper markets and speculators influence short-term price volatility</li>
+        <li style="font-size:12px;color:var(--text-2);padding:5px 0;line-height:1.6;"><span style="color:var(--gold);margin-right:8px;">&#8226;</span><span style="color:var(--gold);font-weight:700;">Discuss</span> the impact of geopolitics, macro-shocks, and risk perception on the oil market</li>
+        <li style="font-size:12px;color:var(--text-2);padding:5px 0;line-height:1.6;"><span style="color:var(--gold);margin-right:8px;">&#8226;</span><span style="color:var(--gold);font-weight:700;">Assess</span> OPEC and non-OPEC actions to balance the market in a volatile supply and demand environment</li>
+        <li style="font-size:12px;color:var(--text-2);padding:5px 0;line-height:1.6;"><span style="color:var(--gold);margin-right:8px;">&#8226;</span><span style="color:var(--gold);font-weight:700;">Develop</span> a proprietary oil balance and oil price forecast</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Analyst Training -->
+<div class="divider"></div>
+<section class="sec-full bg-1" id="analyst">
+  <div class="inner">
+    <div class="rv">
+      <h2 class="sec-title">I. Analyst Training Program</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-intro">A comprehensive 15-day curriculum delivered across 7 modules over 6 months. Each module is delivered monthly, combining structured lectures by Majlis Energy core faculty, expert speaker briefings, and hands-on analytical workshops. Each cohort accommodates 20 Ministry analysts.</p>
+    </div>
+    <div class="rv">
+      <div class="sub">Module Breakdown</div>
+      <div class="mods">
+
+        <div class="mc" onclick="tog(this)">
+          <div class="mh">
+            <div class="code">M1</div>
+            <div class="title">Oil Supply, Demand &amp; Price Forecasting</div>
+            <div class="meta"><span class="badge">3 days &middot; 20%</span></div>
+            <div class="prices"><span><span class="pl">1 Cohort</span>$204,861</span><span><span class="pl">2 Cohorts</span>$409,722</span></div>
+            <div class="tog">&#9662;</div>
+          </div>
+          <div class="mb"><div class="mb-inner">
+            <p style="font-style:italic;color:var(--gold-lt);margin-bottom:10px;"><strong style="color:var(--gold);">Objective:</strong> Build a comprehensive understanding of global oil market fundamentals and the price of oil</p>
+            <p>The foundational module covering the full oil supply-demand framework and price forecasting methodologies used by institutional analysts and policy advisors.</p>
+            <div style="margin:10px 0 12px;">
+              <h5 style="font-family:'Montserrat';font-weight:600;font-size:11px;color:var(--gold-lt);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">Core Components</h5>
+              <ul style="list-style:none;padding:0;margin:0;columns:2;column-gap:16px;">
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>General introduction to energy and the role of oil in history and today's markets</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Global supply dynamics: OPEC, non-OPEC, shale and conventional oil production</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>OPEC+ policy decisions, spare capacity, and market balancing dynamics</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Global oil demand by region and by sector: OECD and non-OECD, transport, industry, residential, power and petrochemicals</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Short-term vs long-term oil supply, demand and price forecasting</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Inventory dynamics: surplus/deficit and stock balancing effects on oil price</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Market structure: contango, backwardation and carrying costs</li>
+              </ul>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-item"><h5>Format</h5><p>6 structured lectures + 3 hands-on analytical workshops over 3 days</p></div>
+              <div class="detail-item"><h5>Suggested Expert Speakers</h5><p>Jim Burkhard — VP &amp; Head of Oil Markets, S&amp;P Global Commodity Insights (TBD)<br>Dr Cuneyt Kozakoglu — Head of Oil Demand, FGE Nexant</p></div>
+            </div>
+            <div class="tags">
+              <span class="tag">OPEC+ policy</span><span class="tag">Spare capacity</span><span class="tag">Demand by region</span>
+              <span class="tag">Inventory dynamics</span><span class="tag">Price forecasting</span><span class="tag">Supply-demand balances</span><span class="tag">Non-OPEC supply</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="mc" onclick="tog(this)">
+          <div class="mh">
+            <div class="code">M2</div>
+            <div class="title">Refining Economics</div>
+            <div class="meta"><span class="badge">2 days &middot; 13%</span></div>
+            <div class="prices"><span><span class="pl">1 Cohort</span>$136,574</span><span><span class="pl">2 Cohorts</span>$273,148</span></div>
+            <div class="tog">&#9662;</div>
+          </div>
+          <div class="mb"><div class="mb-inner">
+            <p style="font-style:italic;color:var(--gold-lt);margin-bottom:10px;"><strong style="color:var(--gold);">Objective:</strong> Develop insight into global refining economics and margin dynamics to map oil product demand</p>
+            <p>Deep dive into downstream economics, refinery margin cycles, and product market dynamics across global refining centres.</p>
+            <div style="margin:10px 0 12px;">
+              <h5 style="font-family:'Montserrat';font-weight:600;font-size:11px;color:var(--gold-lt);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">Core Components</h5>
+              <ul style="list-style:none;padding:0;margin:0;columns:2;column-gap:16px;">
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Refinery configurations: hydroskimming, cracking, coking and integrated</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Crude slate optimization and refinery yield economics</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Crack spreads and refinery margin calculation</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Seasonal product demand patterns and regional differences</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Fuel specification impacts on refinery operations and crude demand</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Refinery utilization rates and maintenance cycles</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Petrochemical integration and feedstock competition</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Impact of product margins on crude quality premiums/discounts</li>
+              </ul>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-item"><h5>Format</h5><p>4 lectures + 2 case-study workshops analysing real refinery margin scenarios</p></div>
+              <div class="detail-item"><h5>Suggested Expert Speakers</h5><p>Alan Gelder — VP, Downstream Research, Wood Mackenzie (TBD)<br>Dr Iman Nasseri — Manager, FGE Nexant</p></div>
+            </div>
+            <div class="tags">
+              <span class="tag">Crack spreads</span><span class="tag">Margin cycles</span><span class="tag">Crude quality premiums</span>
+              <span class="tag">Petrochemical feedstock</span><span class="tag">Refinery configuration</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="mc" onclick="tog(this)">
+          <div class="mh">
+            <div class="code">M3</div>
+            <div class="title">Geopolitics &amp; Global Trade</div>
+            <div class="meta"><span class="badge">2 days &middot; 13%</span></div>
+            <div class="prices"><span><span class="pl">1 Cohort</span>$136,574</span><span><span class="pl">2 Cohorts</span>$273,148</span></div>
+            <div class="tog">&#9662;</div>
+          </div>
+          <div class="mb"><div class="mb-inner">
+            <p style="font-style:italic;color:var(--gold-lt);margin-bottom:10px;"><strong style="color:var(--gold);">Objective:</strong> Understand the geopolitics of oil markets</p>
+            <p>Understanding how geopolitical events, sanctions regimes, and trade disruptions shape oil flows and pricing across regions.</p>
+            <div style="margin:10px 0 12px;">
+              <h5 style="font-family:'Montserrat';font-weight:600;font-size:11px;color:var(--gold-lt);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">Core Components</h5>
+              <ul style="list-style:none;padding:0;margin:0;columns:2;column-gap:16px;">
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Impact of sanctions and geopolitics on oil flows and the risk premium on oil price</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Major global oil trade routes and strategic chokepoints</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Oil tanker markets: VLCC, Suezmax, Aframax freight economics</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>FOB vs CIF pricing and cargo valuation</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Term vs spot crude trading and pricing formulas</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Storage economics and floating storage arbitrage</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Freight cost impact on crude arbitrage flows</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Price reporting agencies and benchmark assessment processes</li>
+              </ul>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-item"><h5>Format</h5><p>4 lectures + 2 scenario planning exercises modelling geopolitical disruption events</p></div>
+              <div class="detail-item"><h5>Suggested Expert Speakers</h5><p>Bob McNally — President, Rapidan Energy Group (TBD)<br>Jamie Ingram — Managing Editor, MEES<br>Colby Connelly — Head of Middle East Content, Energy Intelligence</p></div>
+            </div>
+            <div class="tags">
+              <span class="tag">Sanctions</span><span class="tag">Trade routes</span><span class="tag">Tanker economics</span>
+              <span class="tag">FOB/CIF pricing</span><span class="tag">Storage arbitrage</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="mc" onclick="tog(this)">
+          <div class="mh">
+            <div class="code">M4</div>
+            <div class="title">Physical Trading</div>
+            <div class="meta"><span class="badge">2 days &middot; 13%</span></div>
+            <div class="prices"><span><span class="pl">1 Cohort</span>$136,574</span><span><span class="pl">2 Cohorts</span>$273,148</span></div>
+            <div class="tog">&#9662;</div>
+          </div>
+          <div class="mb"><div class="mb-inner">
+            <p style="font-style:italic;color:var(--gold-lt);margin-bottom:10px;"><strong style="color:var(--gold);">Objective:</strong> Understand physical oil trading (shipping, pipelines and trade)</p>
+            <p>Mechanics of physical oil trading from cargo origination through to settlement, including risk management along the trade lifecycle.</p>
+            <div style="margin:10px 0 12px;">
+              <h5 style="font-family:'Montserrat';font-weight:600;font-size:11px;color:var(--gold-lt);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">Core Components</h5>
+              <ul style="list-style:none;padding:0;margin:0;columns:2;column-gap:16px;">
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Shipping, pipeline and regional and global crude oil trade</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Trade lifecycle: execution, clearing, settlement processes</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Clearinghouse functions and risk management frameworks</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Physical delivery procedures in crude futures contracts</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Exchange for Physical (EFP) mechanisms</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Regulatory reporting requirements and compliance frameworks</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Settlement price formation and manipulation risks</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Digital settlement innovations and emerging infrastructure</li>
+              </ul>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-item"><h5>Format</h5><p>4 lectures + 2 trade simulation workshops replicating real cargo transactions</p></div>
+              <div class="detail-item"><h5>Suggested Expert Speakers</h5><p>Xavier Tang — Oil Market Analyst, Vortexa (TBD)<br>Alex Mikhov — Senior Oil Trader, Trafigura<br>Antoine Halff — Chief Energy Analyst, Kayrros</p></div>
+            </div>
+            <div class="tags">
+              <span class="tag">Trade lifecycle</span><span class="tag">Clearinghouse risk</span><span class="tag">EFP mechanisms</span>
+              <span class="tag">Settlement frameworks</span><span class="tag">Cargo logistics</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="mc" onclick="tog(this)">
+          <div class="mh">
+            <div class="code">M5</div>
+            <div class="title">Financialization of Oil</div>
+            <div class="meta"><span class="badge">2 days &middot; 13%</span></div>
+            <div class="prices"><span><span class="pl">1 Cohort</span>$136,574</span><span><span class="pl">2 Cohorts</span>$273,148</span></div>
+            <div class="tog">&#9662;</div>
+          </div>
+          <div class="mb"><div class="mb-inner">
+            <p style="font-style:italic;color:var(--gold-lt);margin-bottom:10px;"><strong style="color:var(--gold);">Objective:</strong> Analyze the transformation of oil into a financial asset class</p>
+            <p>How financial markets, investor behaviour, and macroeconomic forces influence oil prices beyond physical fundamentals.</p>
+            <div style="margin:10px 0 12px;">
+              <h5 style="font-family:'Montserrat';font-weight:600;font-size:11px;color:var(--gold-lt);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">Core Components</h5>
+              <ul style="list-style:none;padding:0;margin:0;columns:2;column-gap:16px;">
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Oil's evolution from commodity to financial investment asset</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Role of hedge funds, banks, ETFs, and index investors</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Impact of passive investment flows on futures markets</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Correlation between oil and equities, bonds, currencies</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>US dollar movements and macroeconomic drivers of oil prices</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Algorithmic and high-frequency trading influence</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Liquidity shifts and extreme volatility events</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>ESG pressures and capital allocation effects</li>
+              </ul>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-item"><h5>Format</h5><p>4 lectures + 2 data-driven workshops analysing fund flows and positioning data</p></div>
+              <div class="detail-item"><h5>Suggested Expert Speakers</h5><p>Daan Stuyvens — Head of Commodities, Goldman Sachs<br>Professor Bassam Fattouh — Director, Oxford Energy Institute (TBD)</p></div>
+            </div>
+            <div class="tags">
+              <span class="tag">Hedge funds</span><span class="tag">ETFs</span><span class="tag">Algorithmic trading</span>
+              <span class="tag">Dollar correlation</span><span class="tag">ESG impact</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="mc" onclick="tog(this)">
+          <div class="mh">
+            <div class="code">M6</div>
+            <div class="title">Paper Markets</div>
+            <div class="meta"><span class="badge">2 days &middot; 13%</span></div>
+            <div class="prices"><span><span class="pl">1 Cohort</span>$136,574</span><span><span class="pl">2 Cohorts</span>$273,148</span></div>
+            <div class="tog">&#9662;</div>
+          </div>
+          <div class="mb"><div class="mb-inner">
+            <p style="font-style:italic;color:var(--gold-lt);margin-bottom:10px;"><strong style="color:var(--gold);">Objective:</strong> Comprehend how financial markets impact price volatility and interact with the physical oil market</p>
+            <p>Futures exchanges, swaps markets, and speculative dynamics across the world's key energy trading platforms.</p>
+            <div style="margin:10px 0 12px;">
+              <h5 style="font-family:'Montserrat';font-weight:600;font-size:11px;color:var(--gold-lt);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">Core Components</h5>
+              <ul style="list-style:none;padding:0;margin:0;columns:2;column-gap:16px;">
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Futures, forwards, and swaps instruments and use cases</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Major exchanges: ICE, NYMEX, DME, Shanghai INE</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Contract structures, delivery points, and specifications</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Futures influence on spot market pricing</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Basis trading between physical and futures markets</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Market participants: producers, traders, funds, speculators</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Hedging versus speculative positioning dynamics</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Regulatory oversight and position limit frameworks</li>
+              </ul>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-item"><h5>Format</h5><p>4 lectures + 2 live market analysis workshops using real exchange data feeds</p></div>
+              <div class="detail-item"><h5>Suggested Expert Speakers</h5><p>Dr. Florian Thaler — Head of OilX, Energy Aspects<br>Robert Ryan — Ryan Commodities, Former Chief Commodity Strategist, BCA Research</p></div>
+            </div>
+            <div class="tags">
+              <span class="tag">ICE / NYMEX / DME</span><span class="tag">Basis trading</span>
+              <span class="tag">Speculative positioning</span><span class="tag">Open interest</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="mc" onclick="tog(this)">
+          <div class="mh">
+            <div class="code">M7</div>
+            <div class="title">Futures, Options &amp; Derivatives</div>
+            <div class="meta"><span class="badge">2 days &middot; 13%</span></div>
+            <div class="prices"><span><span class="pl">1 Cohort</span>$136,574</span><span><span class="pl">2 Cohorts</span>$273,148</span></div>
+            <div class="tog">&#9662;</div>
+          </div>
+          <div class="mb"><div class="mb-inner">
+            <p style="font-style:italic;color:var(--gold-lt);margin-bottom:10px;"><strong style="color:var(--gold);">Objective:</strong> Develop working knowledge of derivative instruments used for risk management</p>
+            <p>Advanced derivatives strategies, options pricing, and risk management frameworks for oil market participants.</p>
+            <div style="margin:10px 0 12px;">
+              <h5 style="font-family:'Montserrat';font-weight:600;font-size:11px;color:var(--gold-lt);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">Core Components</h5>
+              <ul style="list-style:none;padding:0;margin:0;columns:2;column-gap:16px;">
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Futures contract mechanics: margining, settlement, contract roll</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Calendar spreads and inter-commodity spreads</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Options fundamentals: calls, puts, strike, premium, volatility</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Options strategies: collars, straddles, structured hedging solutions</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Swaps markets: price, basis, and crack spread swaps</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>OTC markets and counterparty risk management</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Clearing reforms and post-2008 derivative infrastructure</li>
+                <li style="font-size:11px;color:var(--text-2);padding:2px 0;line-height:1.4;break-inside:avoid;"><span style="color:var(--gold);margin-right:6px;">&#8226;</span>Application of derivatives for producer and consumer hedging</li>
+              </ul>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-item"><h5>Format</h5><p>4 lectures + 2 hedging strategy workshops building real options structures</p></div>
+              <div class="detail-item"><h5>Suggested Expert Speakers</h5><p>Robert Ryan — Ryan Commodities, Former Chief Commodity Strategist, BCA Research</p></div>
+            </div>
+            <div class="tags">
+              <span class="tag">Options strategies</span><span class="tag">Collars &amp; straddles</span><span class="tag">Swaps</span>
+              <span class="tag">OTC risk</span><span class="tag">Producer hedging</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="mod-total">
+          <div class="label">Total &mdash; 15 Days &middot; 45 Sessions &middot; 90 Hours</div>
+          <div class="vals">
+            <div class="val"><span class="pl">1 Cohort</span>$1,024,304</div>
+            <div class="val"><span class="pl">2 Cohorts</span>$2,048,608</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv" style="margin-top:36px;">
+      <div class="sub">Delivery Timeline</div>
+      <p style="font-size:12px;color:var(--text-3);margin-bottom:14px;">Modules are delivered monthly over six months, progressively building analytical capabilities.</p>
+      <div class="tl">
+        <div class="tl-i"><div class="tl-d">1</div><div class="tl-p">April 2026</div><div class="tl-t">Curriculum finalization and material development</div></div>
+        <div class="tl-i"><div class="tl-d">2</div><div class="tl-p">May 2026</div><div class="tl-t">Participant selection and onboarding by the Ministry</div></div>
+        <div class="tl-i"><div class="tl-d">3</div><div class="tl-p">June 2026</div><div class="tl-t">Cohort 1 launch — Module 1 (3 days)</div></div>
+        <div class="tl-i"><div class="tl-d">4</div><div class="tl-p">Jul – Nov 2026</div><div class="tl-t">Modules 2–7 delivered monthly (2 days each)</div></div>
+        <div class="tl-i"><div class="tl-d">5</div><div class="tl-p">Dec 2026 – May 2027</div><div class="tl-t">Cohort 2 delivery (Scenario 2 only)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Executive Roundtable -->
+<div class="divider"></div>
+<section class="sec" id="roundtable">
+  <div class="rv">
+    <h2 class="sec-title">II. Executive Roundtable Program</h2>
+    <div class="sec-rule"></div>
+    <p class="sec-intro">Four exclusive private roundtable dinner discussions organised on the margins of major international energy conferences. These are highly curated, confidential strategic engagements bringing together senior Ministry of Energy executives with leading global industry experts for candid, closed-door dialogue.</p>
+    <p class="sec-intro" style="margin-top:-16px;">Each roundtable features a private dinner setting with carefully selected participants, expert-led strategic discussions, and real-time market intelligence exchange. They are not public-facing events, open panels, or large-format presentations.</p>
+  </div>
+  <div class="rv">
+    <div class="rt-grid">
+      <div class="rt-card"><div class="rt-num">ROUNDTABLE 01</div><div class="rt-event">CERAWeek</div><div class="rt-loc">Houston, USA</div><div class="rt-dets"><div class="rt-det"><strong>15</strong>Guests</div><div class="rt-det"><strong>2</strong>Speakers</div><div class="rt-det"><strong>$92,316</strong>Fee</div></div></div>
+      <div class="rt-card"><div class="rt-num">ROUNDTABLE 02</div><div class="rt-event">Energy Intelligence Forum</div><div class="rt-loc">London, UK</div><div class="rt-dets"><div class="rt-det"><strong>15</strong>Guests</div><div class="rt-det"><strong>2</strong>Speakers</div><div class="rt-det"><strong>$92,316</strong>Fee</div></div></div>
+      <div class="rt-card"><div class="rt-num">ROUNDTABLE 03</div><div class="rt-event">International Energy Week</div><div class="rt-loc">London, UK</div><div class="rt-dets"><div class="rt-det"><strong>15</strong>Guests</div><div class="rt-det"><strong>2</strong>Speakers</div><div class="rt-det"><strong>$92,316</strong>Fee</div></div></div>
+      <div class="rt-card"><div class="rt-num">ROUNDTABLE 04</div><div class="rt-event">International Energy Forum</div><div class="rt-loc">Riyadh, KSA</div><div class="rt-dets"><div class="rt-det"><strong>15</strong>Guests</div><div class="rt-det"><strong>2</strong>Speakers</div><div class="rt-det"><strong>$92,316</strong>Fee</div></div></div>
+    </div>
+    <div class="rt-total"><div class="label">Total &mdash; 4 Events &middot; 8 Expert Speakers</div><div class="val">$369,264</div></div>
+    <p class="rt-note">Exact dates to be confirmed based on official conference schedules. Venues will be premium hotels in each city, final selection at the Ministry's discretion.</p>
+  </div>
+</section>
+
+<!-- Outcomes -->
+<div class="divider"></div>
+<section class="sec-full bg-1" id="outcomes">
+  <div class="inner">
+    <div class="rv">
+      <h2 class="sec-title">Program Outcomes</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-intro">The program delivers measurable, lasting impact on the Ministry's analytical capabilities. Participants develop practical, immediately deployable skills.</p>
+    </div>
+    <div class="rv">
+      <div class="oc-cat">Analytical Skills</div><div class="oc-line"></div>
+      <div class="oc-grid">
+        <div class="oc-card"><h4>Forecasting &amp; Scenario Planning</h4><p>Build proprietary oil supply-demand and price forecasts for OPEC+ policy support</p></div>
+        <div class="oc-card"><h4>Refining &amp; Product Market Analysis</h4><p>Analyse crack spreads, crude differentials, and arbitrage flows across regions</p></div>
+      </div>
+      <div class="oc-cat">Market Intelligence</div><div class="oc-line"></div>
+      <div class="oc-grid">
+        <div class="oc-card"><h4>Geopolitical Risk Assessment</h4><p>Evaluate sanctions, trade disruptions, and political shocks on oil flows and pricing</p></div>
+        <div class="oc-card"><h4>Physical &amp; Financial Integration</h4><p>Connect tanker flows, storage, and pipeline data with futures and options positioning</p></div>
+      </div>
+      <div class="oc-cat">Risk &amp; Derivatives</div><div class="oc-line"></div>
+      <div class="oc-grid" style="grid-template-columns:1fr;">
+        <div class="oc-card"><h4>Derivatives &amp; Risk Management</h4><p>Interpret clearing mechanisms, liquidity dynamics, and producer hedging strategies</p></div>
+      </div>
+      <div class="oc-cat">Deliverables</div><div class="oc-line"></div>
+      <div class="oc-grid">
+        <div class="oc-card"><h4>Strategic Market Intelligence</h4><p>Produce structured market reports, briefing notes, and data-driven presentations</p></div>
+        <div class="oc-card"><h4>Certification &amp; Knowledge Transfer</h4><p>Earn Advanced Oil Market Analysis Certification with seven module-linked reports</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Investment -->
+<div class="divider"></div>
+<section class="sec" id="investment">
+  <div class="rv">
+    <h2 class="sec-title">Investment Summary</h2>
+    <div class="sec-rule"></div>
+    <div class="sc-tog">
+      <button class="sc-btn active" onclick="showSc(1)">Scenario 1 &mdash; 1 Cohort</button>
+      <button class="sc-btn" onclick="showSc(2)">Scenario 2 &mdash; 2 Cohorts</button>
+    </div>
+    <div id="sc-1">
+      <table class="inv-tbl"><thead><tr><th>Item</th><th>Amount (USD)</th></tr></thead><tbody>
+        <tr><td>Analyst Training (1 Cohort &times; 20 Analysts)</td><td>$1,024,304</td></tr>
+        <tr><td>Executive Roundtables (4 Events)</td><td>$369,264</td></tr>
+        <tr class="rb"><td>Program Fee</td><td>$1,393,568</td></tr>
+        <tr><td>Majlis Investment (&ndash;10%)*</td><td>&ndash;$139,357</td></tr>
+        <tr class="rb"><td>Subtotal</td><td>$1,254,211</td></tr>
+        <tr><td>VAT (15%)</td><td>$188,132</td></tr>
+        <tr class="rg"><td>Total Investment</td><td>$1,442,343</td></tr>
+      </tbody></table>
+    </div>
+    <div id="sc-2" style="display:none;">
+      <table class="inv-tbl"><thead><tr><th>Item</th><th>Amount (USD)</th></tr></thead><tbody>
+        <tr><td>Analyst Training (2 Cohorts &times; 20 Analysts)</td><td>$2,048,608</td></tr>
+        <tr><td>Executive Roundtables (4 Events)</td><td>$369,264</td></tr>
+        <tr class="rb"><td>Program Fee</td><td>$2,417,872</td></tr>
+        <tr><td>Majlis Investment (&ndash;10%)*</td><td>&ndash;$241,787</td></tr>
+        <tr class="rb"><td>Subtotal</td><td>$2,176,085</td></tr>
+        <tr><td>VAT (15%)</td><td>$326,413</td></tr>
+        <tr class="rg"><td>Total Investment</td><td>$2,502,498</td></tr>
+      </tbody></table>
+    </div>
+    <div class="inv-fn"><strong>*</strong> Majlis Investment represents Majlis Energy Advisory's direct co-investment in the program, applied as a discount to the Ministry. As a Saudi-founded energy advisory firm, Majlis Energy is committed to strengthening the Kingdom's energy institutions and building national analytical capacity. This contribution reflects our belief that investing in the Ministry's people is an investment in Saudi Arabia's continued leadership of global energy markets.</div>
+  </div>
+  <div class="rv">
+    <div class="sub" style="margin-top:36px;">Scenario Comparison</div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="hd"><h3>1 Cohort + Executive Roundtables</h3></div>
+        <div class="bd">
+          <div class="ln"><span>Program Fee</span><span class="v">$1,393,568</span></div>
+          <div class="ln"><span>Majlis Investment (&ndash;10%)*</span><span class="v">&ndash;$139,357</span></div>
+          <div class="ln"><span>VAT (15%)</span><span class="v">$188,132</span></div>
+        </div>
+        <div class="tl"><span class="lb">Total Investment</span><span class="vl">$1,442,343</span></div>
+      </div>
+      <div class="comp-card">
+        <div class="hd"><h3>2 Cohorts + Executive Roundtables</h3></div>
+        <div class="bd">
+          <div class="ln"><span>Program Fee</span><span class="v">$2,417,872</span></div>
+          <div class="ln"><span>Majlis Investment (&ndash;10%)*</span><span class="v">&ndash;$241,787</span></div>
+          <div class="ln"><span>VAT (15%)</span><span class="v">$326,413</span></div>
+        </div>
+        <div class="tl"><span class="lb">Total Investment</span><span class="vl">$2,502,498</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Next Steps -->
+<div class="divider"></div>
+<section class="sec-full bg-1" id="next-steps">
+  <div class="inner">
+    <div class="rv">
+      <h2 class="sec-title">Next Steps</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-intro">To initiate the program, we propose the following steps:</p>
+      <div class="steps">
+        <div class="st-i"><div class="st-n">1</div><div class="st-c"><h4>Approve Program Framework</h4><div class="tm">April 2026</div><p>Confirm structure, module priorities, cohort size, and scenario selection</p></div></div>
+        <div class="st-i"><div class="st-n">2</div><div class="st-c"><h4>Allocate Budget &amp; Approvals</h4><div class="tm">April 2026</div><p>Secure internal budget allocation, formal approval, and contract execution</p></div></div>
+        <div class="st-i"><div class="st-n">3</div><div class="st-c"><h4>Develop Training Materials</h4><div class="tm">April &ndash; May 2026</div><p>Majlis Energy finalizes curriculum, session plans, and workshop materials</p></div></div>
+        <div class="st-i"><div class="st-n">4</div><div class="st-c"><h4>Select Participant Cohort</h4><div class="tm">May 2026</div><p>Ministry identifies and nominates analyst participants for each cohort</p></div></div>
+        <div class="st-i"><div class="st-n">5</div><div class="st-c"><h4>Establish Success Metrics</h4><div class="tm">May 2026</div><p>Define KPIs, assessment criteria, certification and reporting structure</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-name">Siddik Bakir</div>
+  <div class="footer-role">Chief Executive Officer</div>
+  <div class="footer-co">Majlis Energy Advisory</div>
+  <div class="footer-div"></div>
+  <div class="footer-det">
+    Majlis Energy Advisory (Majlis Altaqa) LLC<br>
+    Commercial Registration: 7050288666<br>
+    VAT Registration: 31305018960003<br><br>
+    Building 3324, Al Imam Saud Ibn Faisal Road<br>
+    Al Malqa District, 13523<br>
+    Riyadh, Kingdom of Saudi Arabia
+  </div>
+  <div class="footer-tag">Saudi Arabia's first specialist energy advisory firm, established to support the Kingdom's energy ecosystem and strengthen its position in global energy markets.</div>
+  <div class="footer-cp">&copy; 2026 Majlis Energy Advisory (Majlis Altaqa) LLC. All rights reserved. &middot; Private &amp; Confidential</div>
+</footer>
+
+<script>
+// Password gate
+function unlock(){
+  var pw=document.getElementById('gate-pw').value;
+  if(pw==='majlis123'){
+    document.getElementById('gate').style.opacity='0';
+    document.getElementById('gate').style.transition='opacity 0.5s ease';
+    setTimeout(function(){
+      document.getElementById('gate').style.display='none';
+      document.getElementById('nav').style.display='flex';
+      document.body.style.overflow='auto';
+    },500);
+  } else {
+    document.getElementById('gate-err').style.opacity='1';
+    document.getElementById('gate-pw').style.borderColor='#C45';
+    setTimeout(function(){document.getElementById('gate-err').style.opacity='0';document.getElementById('gate-pw').style.borderColor='var(--gold-border)';},2500);
+  }
+}
+// Prevent scrolling while gate is visible
+document.body.style.overflow='hidden';
+
+document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20));
+function tog(c){c.classList.toggle('open');}
+function showSc(n){
+  var panels=['sc-1','sc-2'];
+  panels.forEach(function(id){
+    var el=document.getElementById(id);
+    if(id==='sc-'+n){
+      el.style.display='block';
+      el.style.opacity='0';
+      el.style.transform='translateY(8px)';
+      requestAnimationFrame(function(){
+        el.style.transition='opacity .4s ease, transform .4s cubic-bezier(.22,1,.36,1)';
+        el.style.opacity='1';
+        el.style.transform='translateY(0)';
+      });
+    } else {
+      el.style.display='none';
+      el.style.opacity='0';
+    }
+  });
+  document.querySelectorAll('.sc-btn').forEach((b,i)=>b.classList.toggle('active',i===n-1));
+}
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');}),{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv').forEach(e=>obs.observe(e));
+</script>
+
+</body>
+</html>
