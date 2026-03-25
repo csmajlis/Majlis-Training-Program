@@ -292,14 +292,113 @@ body{
 .footer-cp{font-size:9px;color:var(--text-3);margin-top:28px;opacity:.4;}
 
 /* ── Responsive ── */
+@media(max-width:900px){
+  .stats-5{grid-template-columns:repeat(3,1fr);}
+  .stats-4{grid-template-columns:repeat(2,1fr);}
+  .comp-grid{grid-template-columns:1fr;}
+  .mh .prices{font-size:10px;gap:8px;}
+  .mh .meta{gap:8px;}
+  .sec,.sec-full{padding:60px 32px;}
+  .hero{padding:80px 32px;}
+}
 @media(max-width:768px){
-  .nav{padding:0 20px;}.nav-links{display:none;}
-  .hero{padding:80px 20px;}
-  .hero h1{font-size:30px;}
-  .sec,.sec-full{padding:50px 20px;}
+  .nav{padding:0 16px;height:48px;}
+  .nav-links{display:none;}
+  .nav-conf{display:none;}
+  .hero{padding:80px 24px;min-height:85vh;}
+  .hero h1{font-size:28px;}
+  .hero-sub{font-size:15px;margin-bottom:32px;}
+  .hero-logo{width:120px;margin-bottom:32px;}
+  .sec,.sec-full{padding:40px 24px;}
+  .sec-title{font-size:22px;}
+  .sec-intro{font-size:13px;}
   .stats-4,.stats-5{grid-template-columns:repeat(2,1fr);}
   .info-grid,.purpose-grid,.rt-grid,.oc-grid,.comp-grid{grid-template-columns:1fr;}
+  .detail-grid{grid-template-columns:1fr;}
+
+  /* Module cards mobile */
+  .mh{flex-wrap:wrap;gap:8px;padding:10px 12px;}
   .mh .prices{display:none;}
+  .mh .title{font-size:11px;min-width:0;}
+  .mh .code{font-size:10px;padding:3px 7px;min-width:32px;}
+  .mh .badge{font-size:9px;padding:2px 6px;}
+  .mb-inner{padding:12px 12px 12px 12px !important;}
+  .mb-inner .detail-grid{gap:16px;}
+  .mb-inner p{font-size:11px;}
+
+  /* Tags wrap */
+  .tags{gap:4px;}
+  .tag{font-size:9px;padding:2px 7px;}
+
+  /* Roundtable cards */
+  .rt-card{padding:16px;}
+  .rt-event{font-size:14px;}
+  .rt-dets{flex-wrap:wrap;gap:12px;}
+  .rt-total{flex-direction:column;gap:8px;text-align:center;padding:16px;}
+
+  /* Module total */
+  .mod-total{flex-direction:column;gap:8px;text-align:center;padding:14px;}
+  .mod-total .vals{gap:12px;}
+
+  /* Investment table */
+  .inv-tbl tbody td{padding:8px 12px;font-size:12px;}
+  .inv-tbl thead th{padding:8px 12px;font-size:9px;}
+  .inv-tbl tbody tr.rg td{font-size:13px;padding:10px 12px;}
+
+  /* Comparison cards */
+  .comp-card .ln{font-size:11px;}
+  .comp-card .tl .vl{font-size:16px;}
+
+  /* Steps */
+  .st-c h4{font-size:12px;}
+  .st-c p{font-size:11px;}
+
+  /* Footer */
+  .footer{padding:40px 24px 28px;}
+  .footer-name{font-size:16px;}
+
+  /* Stat cards */
+  .sc .v{font-size:20px;}
+  .sc .l{font-size:8px;}
+  .sc{padding:12px 8px;}
+
+  /* Info boxes */
+  .info-box{padding:16px;}
+  .info-box h3{font-size:13px;}
+
+  /* Purpose cards */
+  .pc{padding:14px 14px 12px 16px;}
+  .pc .kw{font-size:13px;}
+
+  /* Outcome cards */
+  .oc-card{padding:12px 14px;}
+  .oc-card h4{font-size:11px;}
+  .oc-card p{font-size:10px;}
+
+  /* Scenario toggle */
+  .sc-tog{flex-direction:column;width:100%;}
+  .sc-btn{width:100%;text-align:center;}
+
+  /* Timeline */
+  .tl{padding-left:30px;}
+  .tl-d{left:-30px;width:20px;height:20px;font-size:8px;}
+  .tl-p{min-width:110px;font-size:11px;}
+  .tl-t{font-size:11px;}
+}
+@media(max-width:420px){
+  .hero h1{font-size:24px;}
+  .hero-logo{width:100px;}
+  .sec,.sec-full{padding:32px 18px;}
+  .stats-4,.stats-5{grid-template-columns:1fr 1fr;}
+  .sc .v{font-size:18px;}
+  .inv-tbl tbody td{padding:6px 8px;font-size:11px;}
+  .inv-tbl thead th{padding:6px 8px;font-size:8px;}
+  .inv-tbl tbody tr.rg td{font-size:12px;}
+  .footer{padding:32px 18px 24px;}
+
+  /* Password gate mobile */
+  #gate div[style*="max-width"] {max-width:100% !important;padding:0 18px !important;}
+  #gate h2{font-size:18px !important;}
 }
 
 /* ── Reveal ── */
@@ -415,7 +514,7 @@ body{
 ">
   <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);"></div>
   <div style="max-width:400px;padding:0 24px;">
-    <img src="Build Scripts & Assets/MAJLIS_RGB_Energy_EN_White.png" alt="Majlis Energy" style="width:160px;margin-bottom:40px;" onerror="this.style.display='none'">
+    <img src="assets/logo-white.png" alt="Majlis Energy" style="width:160px;margin-bottom:40px;" onerror="this.style.display='none'">
     <h2 style="font-family:'Montserrat';font-weight:700;font-size:22px;color:var(--white);margin-bottom:6px;">Oil Market Training Program</h2>
     <p style="font-family:'Montserrat';font-weight:300;font-size:14px;color:var(--gold);margin-bottom:32px;">Full Proposal</p>
     <div style="width:50px;height:1px;background:var(--gold);margin:0 auto 32px;"></div>
@@ -456,7 +555,7 @@ body{
 <!-- Hero -->
 <section class="hero">
   <div class="hero-content">
-    <img src="Build Scripts & Assets/MAJLIS_RGB_Energy_EN_White.png" alt="Majlis Energy" class="hero-logo" onerror="this.style.display='none'">
+    <img src="assets/logo-white.png" alt="Majlis Energy" class="hero-logo" onerror="this.style.display='none'">
     <h1>Oil Market<br>Training Program</h1>
     <div class="hero-sub">Full Proposal</div>
     <div class="hero-line"></div>
