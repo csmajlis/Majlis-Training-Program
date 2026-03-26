@@ -44,7 +44,7 @@ body{
   transition:border-color 0.3s;
 }
 .nav.scrolled{border-bottom-color:var(--gold);}
-.nav-brand{font-family:'Montserrat';font-weight:600;font-size:11px;letter-spacing:2.5px;color:var(--white);text-transform:uppercase;}
+.nav-brand{text-decoration:none;display:flex;align-items:center;}
 .nav-links{display:flex;gap:24px;}
 .nav-links a{font-size:10px;font-weight:600;color:var(--text-3);text-decoration:none;letter-spacing:0.8px;text-transform:uppercase;transition:color 0.2s;}
 .nav-links a:hover{color:var(--gold);}
@@ -540,7 +540,7 @@ body{
 </div>
 
 <nav class="nav" id="nav" style="display:none;">
-  <div class="nav-brand">Majlis Energy Advisory</div>
+  <a href="#" class="nav-brand"><img src="assets/MAJLIS_RGB_Energy_EN_White.png" alt="Majlis Energy Advisory" style="height:28px;display:block;"></a>
   <div class="nav-links">
     <a href="#overview">Overview</a>
     <a href="#analyst">Analyst Program</a>
@@ -735,7 +735,7 @@ body{
         <div class="mc" onclick="tog(this)">
           <div class="mh">
             <div class="code">M3</div>
-            <div class="title">Geopolitics &amp; Global Trade</div>
+            <div class="title">Geopolitics &amp; Trade</div>
             <div class="meta"><span class="badge">2 days &middot; 13%</span></div>
             <div class="prices"><span><span class="pl">1 Cohort</span>$136,574</span><span><span class="pl">2 Cohorts</span>$273,148</span></div>
             <div class="tog">&#9662;</div>
@@ -875,7 +875,7 @@ body{
         <div class="mc" onclick="tog(this)">
           <div class="mh">
             <div class="code">M7</div>
-            <div class="title">Futures, Options &amp; Derivatives</div>
+            <div class="title">Futures &amp; Derivatives</div>
             <div class="meta"><span class="badge">2 days &middot; 13%</span></div>
             <div class="prices"><span><span class="pl">1 Cohort</span>$136,574</span><span><span class="pl">2 Cohorts</span>$273,148</span></div>
             <div class="tog">&#9662;</div>
@@ -1067,7 +1067,7 @@ body{
 <footer class="footer">
   <div class="footer-name">Siddik Bakir</div>
   <div class="footer-role">Chief Executive Officer</div>
-  <div class="footer-co">Majlis Energy Advisory</div>
+  <div class="footer-co"><a href="https://majlisadvisory.com" target="_blank" style="color:var(--text-3);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-3)'">majlisadvisory.com</a></div>
   <div class="footer-div"></div>
   <div class="footer-det">
     Majlis Energy Advisory (Majlis Altaqa) LLC<br>
